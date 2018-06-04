@@ -13,22 +13,29 @@ import ReviewScreen from './screens/ReviewScreen';
 
 export default class App extends React.Component {
   render() {
-    const MainNavigator = createBottomTabNavigator({
-      welcome: WelcomeScreen,
-      auth: AuthScreen,
-      main: {
-        screen: createBottomTabNavigator({
-          map: MapScreen,
-          deck: DeckScreen,
-          review: {
-            screen: createStackNavigator({
-              review: ReviewScreen,
-              settings: SettingsScreen
-            })
-          }
-        })
+    const MainNavigator = createBottomTabNavigator(
+      {
+        welcome: WelcomeScreen,
+        auth: AuthScreen,
+        main: {
+          screen: createBottomTabNavigator({
+            map: MapScreen,
+            deck: DeckScreen,
+            review: {
+              screen: createStackNavigator({
+                review: ReviewScreen,
+                settings: SettingsScreen
+              })
+            }
+          })
+        }
+      },
+      {
+        navigationOptions: {
+          tabBarVisible: false
+        }
       }
-    });
+    );
 
     return (
       <Provider store={store}>
