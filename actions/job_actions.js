@@ -4,18 +4,20 @@ import qs from 'qs';
 
 import { FETCH_JOBS } from './types';
 
-const JOB_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
-const JOB_QUERY_PARAMS = {
-  publisher: '4201738803816157',
-  form: 'json',
-  v: '2',
-  latlong: 1,
-  radius: 10,
-  q: 'javascript'
-};
+// const JOB_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
+// const JOB_QUERY_PARAMS = {
+//   publisher: '4201738803816157',
+//   form: 'json',
+//   v: '2',
+//   latlong: 1,
+//   radius: 10,
+//   q: 'javascript'
+// };
+
+const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?';
 
 const buildJobsUrl = zip => {
-  const query = qs.stringify({ ...JOB_QUERY_PARAMS, l: zip });
+  const query = `location=${zip}`;
   return `${JOB_ROOT_URL}${query}`;
 };
 
