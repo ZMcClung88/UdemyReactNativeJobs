@@ -23,12 +23,14 @@ class ReviewScreen extends Component {
 
   renderLikedJobs() {
     return this.props.likedJobs.map(job => {
+      let date = new Date(job.created_at).toLocaleDateString();
+
       return (
         <Card>
           <View style={{ height: 200 }}>
             <View style={styles.detailWrapper}>
               <Text style={styles.italics}>{job.company}</Text>
-              <Text style={styles.italics}>{job.created_at}</Text>
+              <Text style={styles.italics}>{date}</Text>
             </View>
           </View>
         </Card>
