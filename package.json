@@ -21,10 +21,13 @@
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^27.0.1",
+    "geocoder": "^0.2.3",
     "latlng-to-zip": "0.0.1",
     "lodash": "^4.17.10",
+    "node-geocoder": "^3.22.0",
     "qs": "^6.5.2",
     "react": "16.3.1",
+    "react-geocode": "0.0.9",
     "react-native": "~0.55.2",
     "react-native-elements": "^0.19.1",
     "react-navigation": "^2.0.4",
