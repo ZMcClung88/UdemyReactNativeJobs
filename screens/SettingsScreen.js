@@ -45,6 +45,11 @@ import { connect } from 'react-redux';
 import { clearLikedJobs } from '../actions';
 
 class SettingsScreen extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      marginTop: Platform.OS === 'android' ? 24 : 0
+    }
+  };
   render() {
     return (
       <View style={styles.buttonContainer}>
