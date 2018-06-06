@@ -59,6 +59,7 @@ class DeckScreen extends Component {
           data={this.props.jobs}
           renderCard={this.renderCard}
           renderNoMoreCards={this.renderNoMoreCards}
+          onSwipeRight={job => this.props.likeJob(job)}
           keyProp="id"
         />
       </View>
