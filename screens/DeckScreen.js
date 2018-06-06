@@ -22,28 +22,41 @@ class DeckScreen extends Component {
     );
 
     const initialRegion = {
-      // longitude: lng,
-      // latitude: lat,
+      longitude: -111.891047,
+      latitude: 40.760779,
       latitudeDelta: 0.045,
       longitudeDelta: 0.02
     };
 
+    const { title, company, description, created_at } = job;
+    let date = new Date(created_at).toLocaleDateString();
+
     return (
-      <Card title={job.title}>
+      <Card title={title}>
         <View style={{ height: 300 }}>
           <MapView
             scrollEnabled={false}
             style={{ flex: 1 }}
-            cacheEnabled={Platform.OS === 'android' ? true : false}
+            cacheEnabled={Platform.OS === 'android'}
             initialRegion={initialRegion}
           />
         </View>
 
         <View style={styles.detailWrapper}>
-          <Text>{job.company}</Text>
-          {/* <Text>{job.created_at}</Text> */}
+          <Text>{company}</Text>
+          <Text>{date}</Text>
         </View>
-        <Text>{job.description}</Text>
+        <Text>
+          {description
+            .replace(/<p>/g, '')
+            .replace(/<\/p>/g, '')
+            .replace(/<strong>/g, '')
+            .replace(/<\/strong>/g, '')
+            .replace(/<ul>/g, '')
+            .replace(/<\/ul>/g, '')
+            .replace(/<li>/g, '')
+            .replace(/<\/li>/g, '')}
+        </Text>
       </Card>
     );
   }
@@ -69,8 +82,11 @@ class DeckScreen extends Component {
 
 const styles = {
   detailWrapper: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginTop: 10,
+    marginBottom: 10
   }
 };
 

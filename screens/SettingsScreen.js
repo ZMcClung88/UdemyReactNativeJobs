@@ -13,12 +13,6 @@ class SettingsScreen extends Component {
   render() {
     return (
       <View>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
         <View>
           <Button large title="Log Out" backgroundColor="red" onPress={this.onButtonPress} />
         </View>
