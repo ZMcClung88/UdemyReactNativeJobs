@@ -10,6 +10,13 @@ import Geocode from 'react-geocode';
 // Geocode.setApiKey('AIzaSyAXdQzGlk6GVvuFWswOFxzWRwDg0MhvMTI')
 
 class DeckScreen extends Component {
+  static navigationOptions = {
+    title: 'Jobs',
+    tabBarIcon: ({ tintColor }) => {
+      return <Icon name="description" size={30} color={tintColor} />;
+    }
+  };
+
   renderCard(job) {
     Geocode.fromAddress(job.location).then(
       response => {
@@ -62,7 +69,17 @@ class DeckScreen extends Component {
   }
 
   renderNoMoreCards = () => {
-    return <Card title="No more jobs" />;
+    return (
+      <Card title="No More Jobs">
+        <Button
+          title="Back To Map"
+          large
+          icon={{ name: 'my-location' }}
+          backgroundColor="#03A9F4"
+          onPress={() => this.props.navigation.navigate('map')}
+        />
+      </Card>
+    );
   };
 
   render() {

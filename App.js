@@ -18,22 +18,36 @@ export default class App extends React.Component {
         welcome: WelcomeScreen,
         auth: AuthScreen,
         main: {
-          screen: createBottomTabNavigator({
-            map: MapScreen,
-            deck: DeckScreen,
-            review: {
-              screen: createStackNavigator({
-                review: ReviewScreen,
-                settings: SettingsScreen
-              })
+          screen: createBottomTabNavigator(
+            {
+              map: MapScreen,
+              deck: DeckScreen,
+              review: {
+                screen: createStackNavigator({
+                  review: ReviewScreen,
+                  settings: SettingsScreen
+                })
+              }
+            },
+            {
+              tabBarOptions: {
+                labelStyle: { fontSize: 12 }
+              }
             }
-          })
+          )
         }
       },
       {
         navigationOptions: {
           tabBarVisible: false
-        }
+        },
+        transitionConfig: () => ({
+          transitionSpec: {
+            duration: 0,
+            timing: Animated.timing,
+            easing: Easing.step0
+          }
+        })
       }
     );
 
