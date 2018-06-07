@@ -9,6 +9,7 @@ const config = {
   storage: AsyncStorage,
   whitelist: ['likedJobs']
 };
+
 const reducer = persistCombineReducers(config, reducers);
 export default function configurationStore(initialState = {}) {
   const store = createStore(reducer, initialState, applyMiddleware(thunk));
