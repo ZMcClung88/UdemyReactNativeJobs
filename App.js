@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
+import { PersistGate } from 'redux-persist/es/integration/react';
+import configureStore from './store';
+
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -13,6 +16,7 @@ import ReviewScreen from './screens/ReviewScreen';
 
 export default class App extends React.Component {
   render() {
+    const { persistor, store } = configureStore();
     const MainNavigator = createBottomTabNavigator(
       {
         welcome: WelcomeScreen,
@@ -31,6 +35,7 @@ export default class App extends React.Component {
             },
             {
               tabBarPosition: 'bottom',
+              lazyLoad: true,
               tabBarOptions: {
                 labelStyle: { fontSize: 12 }
               }
@@ -42,31 +47,26 @@ export default class App extends React.Component {
         navigationOptions: {
           tabBarVisible: false
         },
-        transitionConfig: () => ({
-          transitionSpec: {
-            duration: 0,
-            timing: Animated.timing,
-            easing: Easing.step0
-          }
-        })
+        tabBarPosition: 'bottom',
+        swipeEnabled: false,
+        lazy: true,
+        animationEnabled: false
       }
     );
-
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <MainNavigator />
-        </View>
+        <PersistGate persistor={persistor}>
+          <View style={styles.container}>
+            <MainNavigator />
+          </View>
+        </PersistGate>
       </Provider>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
-    // alignItems: 'center',
-    // justifyContent: 'center'
   }
 });
